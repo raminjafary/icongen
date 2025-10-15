@@ -1,0 +1,23 @@
+{
+  "name": "icongen-icons-browser-example",
+  "version": "1.0.0",
+  "description": "Browser vanilla JavaScript example for IconGen Icons",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "generate:sprite": "npx tsx ../../src/sprite/sprite-cli.ts --name browser-vanilla-sprite --src ../svg --dist ./dist/sprite --verbose",
+    "generate:sprite:all": "npx tsx ../../src/sprite/sprite-cli.ts --all",
+    "generate:fonts": "npx @raminjafary/icongen --src ../svg --dist ./dist/fonts --verbose",
+    "generate:assets": "npm run generate:fonts && npm run generate:sprite",
+    "test:sprite": "npm run generate:sprite && npm run dev"
+  },
+  "dependencies": {
+    "@raminjafary/icongen": "file:../.."
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "tsx": "^4.0.0"
+  }
+}

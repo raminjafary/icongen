@@ -1,0 +1,16 @@
+{
+  "name": "icongen-icons-nodejs-example",
+  "version": "1.0.0",
+  "description": "Node.js CLI example for IconGen Icons",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "generate:fonts": "node generate-fonts.js",
+    "generate:sprite": "node generate-sprite.js",
+    "optimize": "node optimize-svgs.js"
+  },
+  "dependencies": {
+    "@raminjafary/icongen": "file:../.."
+  }
+}

@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>{{title}} - Icon Font Showcase</title>
+    <meta name="description" content="{{description}}" />
+    <meta name="keywords" content="{{keywords}}" />
+
+    <link rel="stylesheet" href="{{fontname}}.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+        color: white;
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      .stats {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .stat-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      .stat-label {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      .icon-grid {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .icon-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        border: 2px solid #f0f0f0;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .icon-item:hover {
+        border-color: #667eea;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .icon-display {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+        transition: color 0.3s ease;
+      }
+
+      .icon-item:hover .icon-display {
+        color: #667eea;
+      }
+
+      .icon-name {
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+
+      .icon-class {
+        font-family: 'Courier New', monospace;
+        font-size: 0.8rem;
+        color: #888;
+        background: #f8f9fa;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+      }
+
+      .icon-unicode {
+        font-family: 'Courier New', monospace;
+        font-size: 0.7rem;
+        color: #999;
+        font-weight: normal;
+      }
+
+      .icon-unicode-preview {
+        font-family: '{{fontname}}';
+        font-size: 0.8rem;
+        color: #666;
+        margin-left: 0.5rem;
+      }
+
+      .copy-feedback {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #28a745;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .copy-feedback.show {
+        opacity: 1;
+      }
+
+      .controls {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .controls-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .control-group label {
+        color: white;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .control-group input,
+      .control-group select {
+        padding: 0.5rem;
+        border: none;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #333;
+      }
+
+      .search-container {
+        margin-bottom: 1rem;
+      }
+
+      .search-input-wrapper {
+        position: relative;
+        margin-bottom: 0.5rem;
+      }
+
+      .search-box {
+        width: 100%;
+        padding: 1rem 3rem 1rem 1rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+      }
+
+      .search-clear {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #999;
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .search-input-wrapper:hover .search-clear,
+      .search-box:focus + .search-clear,
+      .search-clear.visible {
+        opacity: 1;
+      }
+
+      .search-clear:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #666;
+      }
+
+      .search-box:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+      }
+
+      .search-results {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 0.25rem;
+        transition: all 0.3s ease;
+      }
+
+      .search-results.empty {
+        color: rgba(255, 99, 71, 0.8);
+      }
+
+      .icon-item.highlight {
+        border-color: #667eea !important;
+        box-shadow: 0 0 15px rgba(102, 126, 234, 0.3) !important;
+        background: rgba(102, 126, 234, 0.05);
+      }
+
+      .search-highlight {
+        background: rgba(255, 235, 59, 0.3);
+        border-radius: 2px;
+        padding: 1px 2px;
+      }
+
+      .color-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .color-presets {
+        display: flex;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+      }
+
+      .color-preset {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .color-preset:hover {
+        transform: scale(1.2);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .color-preset.active {
+        border-color: rgba(255, 255, 255, 0.8);
+        transform: scale(1.1);
+      }
+
+      .usage-section {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        margin-top: 2rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .file-sizes {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        margin: 2rem 0;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .file-sizes h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+        text-align: center;
+      }
+
+      .file-sizes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .file-size-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.75rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        transition: all 0.2s ease;
+        text-align: center;
+      }
+
+      .file-size-item:hover {
+        background: #e9ecef;
+        transform: translateY(-1px);
+      }
+
+      .file-name {
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        color: #495057;
+        font-weight: 500;
+        margin-top: 0.5rem;
+      }
+
+      .file-size {
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        color: #6c757d;
+        background: #dee2e6;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .usage-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .framework-example {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+      }
+
+      .framework-example h4 {
+        color: #495057;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #667eea;
+        padding-bottom: 0.5rem;
+      }
+
+      .framework-note {
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+        color: #856404;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .framework-note strong {
+        color: #664d03;
+      }
+
+      .framework-note code {
+        background: #fff8e1;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        color: #664d03;
+      }
+
+      .cache-busting-note {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: #e8f5e8;
+        border-radius: 12px;
+        border: 1px solid #4caf50;
+      }
+
+      .cache-busting-note h4 {
+        color: #2e7d32;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .cache-busting-note p {
+        color: #2e7d32;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .cache-busting-note code {
+        background: #c8e6c9;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        color: #1b5e20;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        overflow-x: auto;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .icon-grid {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          padding: 1rem;
+        }
+
+        .icon-display {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>{{title}}</h1>
+        <p>Beautiful icon font with {{count}} carefully crafted icons</p>
+      </header>
+
+      <section class="stats">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">{{count}}</div>
+            <div class="stat-label">Total Icons</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Font Formats</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{fontname}}</div>
+            <div class="stat-label">Font Family</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{totalSize}}</div>
+            <div class="stat-label">Total Size</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="file-sizes">
+        <h3>Generated Files & Sizes</h3>
+        <div class="file-sizes-grid">{{fileSizes}}</div>
+      </section>
+
+      <section class="controls">
+        <div class="search-container">
+          <div class="search-input-wrapper">
+            <input
+              type="text"
+              id="search"
+              class="search-box"
+              placeholder="Search icons by name, category, or keyword..."
+            />
+            <button class="search-clear" id="search-clear" title="Clear search">
+              ×
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <main class="icon-grid" id="icon-container">
+        {% for icon in icons %}
+        <div
+          class="icon-item"
+          data-name="{{icon.name}}"
+          data-class="{{classname}}-{{icon.name}}"
+        >
+          <div class="copy-feedback">Copied!</div>
+          <div class="icon-display {{classname}}-{{icon.name}}"></div>
+          <div class="icon-name">{{icon.name}}</div>
+          <div class="icon-class">.{{classname}}-{{icon.name}}</div>
+          <div class="icon-unicode">{{icon.unicode}}</div>
+        </div>
+        {% endfor %}
+      </main>
+
+      <section class="usage-section">
+        <h2 class="usage-title">How to Use</h2>
+
+        <h3>1. Include the CSS file in your HTML:</h3>
+        <div class="code-block">
+          &lt;link rel="stylesheet" href="{{fontname}}.css"&gt;
+        </div>
+
+        <h3>2. Use icons with CSS classes:</h3>
+        <div class="code-block">
+          &lt;i class="{{classname}}-home"&gt;&lt;/i&gt; &lt;span
+          class="{{classname}}-search"&gt;&lt;/span&gt;
+        </div>
+
+        <h3>3. Customize with CSS:</h3>
+        <div class="code-block">
+          .{{classname}}-home { font-size: 24px; color: #667eea; } .my-icon {
+          font-size: 2rem; color: red; margin-right: 8px; }
+        </div>
+
+        <h3>4. Available font formats:</h3>
+        <div class="code-block">
+          {{fontname}}.ttf - TrueType Font {{fontname}}.woff - Web Open Font
+          Format {{fontname}}.woff2 - Web Open Font Format 2.0 {{fontname}}.eot
+          - Embedded OpenType {{fontname}}.svg - SVG Font
+        </div>
+
+        <h3>5. Framework Integration Examples:</h3>
+
+        <div class="framework-example">
+          <h4>Pure HTML Project</h4>
+          <div class="code-block">
+            &lt;!DOCTYPE html&gt;<br />
+            &lt;html lang="en"&gt;<br />
+            &lt;head&gt;<br />
+            &nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br />
+            &nbsp;&nbsp;&lt;title&gt;My HTML Project&lt;/title&gt;<br />
+            &nbsp;&nbsp;&lt;!-- Include IconGen Icons CSS --&gt;<br />
+            &nbsp;&nbsp;&lt;link rel="stylesheet" href="{{fontname}}.css"&gt;<br />
+            &lt;/head&gt;<br />
+            &lt;body&gt;<br />
+            &nbsp;&nbsp;&lt;i class="{{classname}}-home"&gt;&lt;/i&gt;<br />
+            &nbsp;&nbsp;&lt;i class="{{classname}}-search"&gt;&lt;/i&gt;<br />
+            &lt;/body&gt;<br />
+            &lt;/html&gt;
+          </div>
+          <p class="framework-note">
+            <strong>Note:</strong> For projects without bundlers, consider
+            adding a version query parameter (e.g.,
+            <code>{{fontname}}.css?v=1.2.3</code>) to bust cache when updating
+            the icon library.
+          </p>
+        </div>
+
+        <div class="framework-example">
+          <h4>JavaScript Project</h4>
+          <div class="code-block">
+            // main.js<br />
+            import '{{fontname}}.css'; // Global import for bundler<br />
+            <br />
+            // Use icons in your HTML<br />
+            &lt;div&gt;<br />
+            &nbsp;&nbsp;&lt;i class="{{classname}}-home"&gt;&lt;/i&gt;<br />
+            &nbsp;&nbsp;&lt;i class="{{classname}}-search"&gt;&lt;/i&gt;<br />
+            &lt;/div&gt;
+          </div>
+          <p class="framework-note">
+            <strong>Important:</strong> Import CSS globally in your main entry
+            file. The icon library already generates hashed font filenames for
+            optimal caching.
+          </p>
+        </div>
+
+        <div class="framework-example">
+          <h4>TypeScript Project</h4>
+          <div class="code-block">
+            // main.ts<br />
+            import '{{fontname}}.css'; // Global import for bundler<br />
+            <br />
+            // Use icons in your HTML<br />
+            &lt;div&gt;<br />
+            &nbsp;&nbsp;&lt;i class="{{classname}}-home"&gt;&lt;/i&gt;<br />
+            &nbsp;&nbsp;&lt;i class="{{classname}}-search"&gt;&lt;/i&gt;<br />
+            &lt;/div&gt;
+          </div>
+          <p class="framework-note">
+            <strong>Important:</strong> Import CSS globally in your main entry
+            file. The icon library already generates hashed font filenames for
+            optimal caching.
+          </p>
+        </div>
+
+        <div class="framework-example">
+          <h4>Nuxt 4 Project</h4>
+          <div class="code-block">
+            // nuxt.config.ts<br />
+            export default defineNuxtConfig({<br />
+            &nbsp;&nbsp;css: [<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;'{{fontname}}.css' // Global import for
+            bundler<br />
+            &nbsp;&nbsp;],<br />
+            });<br />
+            <br />
+            // app.vue<br />
+            &lt;template&gt;<br />
+            &nbsp;&nbsp;&lt;i class="{{classname}}-home"&gt;&lt;/i&gt;<br />
+            &nbsp;&nbsp;&lt;i class="{{classname}}-search"&gt;&lt;/i&gt;<br />
+            &lt;/template&gt;
+          </div>
+          <p class="framework-note">
+            <strong>Important:</strong> Add CSS to nuxt.config.ts. The icon
+            library already generates hashed font filenames for optimal caching.
+          </p>
+        </div>
+
+        <div class="framework-example">
+          <h4>Next.js Project</h4>
+          <div class="code-block">
+            // _app.tsx or layout.tsx<br />
+            import type { AppProps } from 'next/app';<br />
+            import '{{fontname}}.css'; // Global import for bundler<br />
+            <br />
+            export default function App({ Component, pageProps }: AppProps) {<br />
+            &nbsp;&nbsp;return &lt;Component {...pageProps} /&gt;;<br />
+            }<br />
+            <br />
+            // Any component<br />
+            &lt;i className="{{classname}}-home" /&gt;<br />
+            &lt;i className="{{classname}}-search" /&gt;
+          </div>
+          <p class="framework-note">
+            <strong>Important:</strong> Import CSS globally in _app.tsx or
+            layout.tsx. The icon library already generates hashed font filenames
+            for optimal caching.
+          </p>
+        </div>
+
+        <div class="cache-busting-note">
+          <h4>Cache Busting Strategies</h4>
+          <p>
+            <strong>For Bundled Projects (React, Vue, Nuxt, Next.js):</strong
+            ><br />
+            Import CSS globally in your main entry file. The icon library
+            automatically generates hashed font filenames, and the bundler will
+            process the CSS to ensure proper font loading.
+          </p>
+          <p>
+            <strong>For Static HTML Projects:</strong><br />
+            The icon library automatically generates hashed font filenames, but
+            you may want to manually update the version query parameter in your
+            HTML file after each icon library update to bust CSS cache:<br />
+            <code
+              >&lt;link rel="stylesheet"
+              href="{{fontname}}.css?v=1.2.3"&gt;</code
+            ><br />
+            <em
+              >Note: Font files are automatically hashed by the icon library, so
+              only CSS cache busting is needed.</em
+            >
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Search functionality
+      const searchInput = document.getElementById('search');
+      const iconContainer = document.getElementById('icon-container');
+      const iconItems = document.querySelectorAll('.icon-item');
+
+      searchInput.addEventListener('input', e => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        // Clear previous highlights
+        clearHighlights();
+
+        iconItems.forEach(item => {
+          const iconName = item.dataset.name.toLowerCase();
+          const iconClass = item.dataset.class.toLowerCase();
+          const nameEl = item.querySelector('.icon-name');
+          const classEl = item.querySelector('.icon-class');
+          const displayName = nameEl.textContent.toLowerCase();
+
+          // Store original text if not already stored
+          if (!nameEl.dataset.original) {
+            nameEl.dataset.original = nameEl.textContent;
+          }
+          if (!classEl.dataset.original) {
+            classEl.dataset.original = classEl.textContent;
+          }
+
+          // Enhanced search: match icon name, class, display name, and keywords
+          const searchableText = `${iconName} ${iconClass} ${displayName}`;
+          const keywords = searchableText
+            .replace(/[^a-z0-9\s]/g, ' ')
+            .split(/\s+/)
+            .filter(Boolean);
+
+          const matches =
+            searchTerm === '' ||
+            searchableText.includes(searchTerm) ||
+            keywords.some(keyword => keyword.startsWith(searchTerm)) ||
+            searchTerm
+              .split(/\s+/)
+              .every(term => searchableText.includes(term));
+
+          if (matches) {
+            item.style.display = 'flex';
+            visibleCount++;
+
+            // Highlight matching terms
+            if (searchTerm !== '') {
+              item.classList.add('highlight');
+              nameEl.innerHTML = highlightSearchTerm(
+                nameEl.dataset.original,
+                searchTerm,
+              );
+              classEl.innerHTML = highlightSearchTerm(
+                classEl.dataset.original,
+                searchTerm,
+              );
+            }
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        // Update search result count
+        updateSearchCount(visibleCount);
+
+        // Toggle clear button visibility
+        const clearBtn = document.getElementById('search-clear');
+        if (searchTerm) {
+          clearBtn.classList.add('visible');
+        } else {
+          clearBtn.classList.remove('visible');
+        }
+      });
+
+      // Clear search functionality
+      document.getElementById('search-clear').addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input'));
+        searchInput.focus();
+      });
+
+      // Icon size control
+      const sizeControl = document.getElementById('icon-size');
+      sizeControl.addEventListener('input', e => {
+        const size = e.target.value + 'px';
+        document.querySelectorAll('.icon-display').forEach(icon => {
+          icon.style.fontSize = size;
+        });
+      });
+
+      // Search count update function
+      function updateSearchCount(count, total = iconItems.length) {
+        const searchResults = document.getElementById('search-results');
+        if (searchResults) {
+          if (count === 0 && searchInput.value.trim() !== '') {
+            searchResults.textContent = 'No icons found';
+            searchResults.classList.add('empty');
+          } else if (searchInput.value.trim() === '') {
+            searchResults.textContent = `${total} icons`;
+            searchResults.classList.remove('empty');
+          } else {
+            searchResults.textContent = `${count} of ${total} icons`;
+            searchResults.classList.remove('empty');
+          }
+        }
+      }
+
+      // Highlight search terms
+      function highlightSearchTerm(text, term) {
+        if (!term.trim()) return text;
+        const regex = new RegExp(
+          `(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`,
+          'gi',
+        );
+        return text.replace(regex, '<span class="search-highlight">$1</span>');
+      }
+
+      // Clear highlights
+      function clearHighlights() {
+        iconItems.forEach(item => {
+          item.classList.remove('highlight');
+          const nameEl = item.querySelector('.icon-name');
+          const classEl = item.querySelector('.icon-class');
+          if (nameEl && nameEl.dataset.original) {
+            nameEl.innerHTML = nameEl.dataset.original;
+          }
+          if (classEl && classEl.dataset.original) {
+            classEl.innerHTML = classEl.dataset.original;
+          }
+        });
+      }
+
+      // Icon color control
+      const colorControl = document.getElementById('icon-color');
+      function updateIconColor(color) {
+        document.querySelectorAll('.icon-display').forEach(icon => {
+          icon.style.color = color;
+        });
+
+        // Update color picker value
+        colorControl.value = color;
+
+        // Update active preset
+        document.querySelectorAll('.color-preset').forEach(preset => {
+          preset.classList.remove('active');
+          if (preset.dataset.color === color) {
+            preset.classList.add('active');
+          }
+        });
+      }
+
+      colorControl.addEventListener('input', e => {
+        updateIconColor(e.target.value);
+      });
+
+      // Color preset functionality
+      document.querySelectorAll('.color-preset').forEach(preset => {
+        preset.addEventListener('click', () => {
+          updateIconColor(preset.dataset.color);
+        });
+      });
+
+      // Initialize with default color
+      updateIconColor('#333333');
+
+      // View mode control
+      const viewModeControl = document.getElementById('view-mode');
+      viewModeControl.addEventListener('change', e => {
+        const mode = e.target.value;
+        if (mode === 'list') {
+          iconContainer.style.gridTemplateColumns = '1fr';
+          iconItems.forEach(item => {
+            item.style.flexDirection = 'row';
+            item.style.justifyContent = 'flex-start';
+            item.style.gap = '1rem';
+          });
+        } else {
+          iconContainer.style.gridTemplateColumns =
+            'repeat(auto-fill, minmax(200px, 1fr))';
+          iconItems.forEach(item => {
+            item.style.flexDirection = 'column';
+            item.style.justifyContent = 'center';
+            item.style.gap = '0';
+          });
+        }
+      });
+
+      // Copy to clipboard functionality
+      iconItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const className = item.dataset.class;
+          const copyText = `<i class="${className}"></i>`;
+
+          navigator.clipboard.writeText(copyText).then(() => {
+            const feedback = item.querySelector('.copy-feedback');
+            feedback.classList.add('show');
+            setTimeout(() => {
+              feedback.classList.remove('show');
+            }, 2000);
+          });
+        });
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', e => {
+        if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          searchInput.dispatchEvent(new Event('input'));
+          searchInput.blur();
+        }
+      });
+
+      // Initialize and add visual feedback
+      document.addEventListener('DOMContentLoaded', () => {
+        // Initialize search count
+        updateSearchCount(iconItems.length);
+
+        // Animate icons on load
+        iconItems.forEach((item, index) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            item.style.transition = 'all 0.3s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          }, index * 50);
+        });
+      });
+    </script>
+  </body>
+</html>

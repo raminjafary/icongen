@@ -1,0 +1,141 @@
+{
+  "name": "@raminjafary/icongen",
+  "version": "1.0.0",
+  "description": "Optimized SVG to font icon converter using SVGO and svgtofont",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./cli": {
+      "import": "./dist/cli.js",
+      "require": "./dist/cli.cjs"
+    },
+    "./optimizer": {
+      "import": "./dist/svgo-optimizer.js",
+      "require": "./dist/svgo-optimizer.cjs",
+      "types": "./dist/svgo-optimizer.d.ts"
+    },
+    "./generator": {
+      "import": "./dist/font-generator.js",
+      "require": "./dist/font-generator.cjs",
+      "types": "./dist/font-generator.d.ts"
+    },
+    "./fonts/*": "./dist/fonts/*",
+    "./fonts/icongen-icons.css": "./dist/fonts/icongen-icons.css",
+    "./fonts/icongen-icons.less": "./dist/fonts/icongen-icons.less",
+    "./fonts/icongen-icons.scss": "./dist/fonts/icongen-icons.scss",
+    "./fonts/icongen-icons.styl": "./dist/fonts/icongen-icons.styl",
+    "./fonts/icongen-icons.module.less": "./dist/fonts/icongen-icons.module.less",
+    "./fonts/icongen-icons.eot": "./dist/fonts/icongen-icons.eot",
+    "./fonts/icongen-icons.woff": "./dist/fonts/icongen-icons.woff",
+    "./fonts/icongen-icons.woff2": "./dist/fonts/icongen-icons.woff2",
+    "./fonts/icongen-icons.ttf": "./dist/fonts/icongen-icons.ttf",
+    "./fonts/icongen-icons.svg": "./dist/fonts/icongen-icons.svg",
+    "./fonts/types": "./dist/fonts/types.js",
+    "./fonts/info.json": "./dist/fonts/info.json",
+    "./fonts/manifest.json": "./dist/fonts/manifest.json",
+    "./sprite": {
+      "import": "./dist/sprite/index.js",
+      "require": "./dist/sprite/index.cjs",
+      "types": "./dist/sprite/index.d.ts"
+    },
+    "./sprite/cli": {
+      "import": "./dist/sprite/sprite-cli.js",
+      "require": "./dist/sprite/sprite-cli.cjs"
+    },
+    "./sprite/generator": {
+      "import": "./dist/sprite/sprite-generator.js",
+      "require": "./dist/sprite/sprite-generator.cjs",
+      "types": "./dist/sprite/sprite-generator.d.ts"
+    },
+    "./sprite/manager": {
+      "import": "./dist/sprite/sprite-manager.js",
+      "require": "./dist/sprite/sprite-manager.cjs",
+      "types": "./dist/sprite/sprite-manager.d.ts"
+    },
+    "./components": {
+      "import": "./dist/components/index.js",
+      "require": "./dist/components/index.cjs"
+    }
+  },
+  "bin": {
+    "icongen": "./dist/cli.js"
+  },
+  "files": [
+    "dist/**/*",
+    "dist/fonts/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "prepare": "pnpm build:all",
+    "build": "vite build && pnpm run postbuild",
+    "postbuild": "node scripts/postbuild.js",
+    "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist",
+    "prebuild": "rm -rf dist/",
+    "dev": "vite build --watch",
+    "generate:fonts": "node dist/cli.js --src ./examples/svg --verbose",
+    "generate:sprite": "tsx src/sprite/sprite-cli.ts",
+    "generate": "tsx src/sprite/sprite-cli.ts --name icons-sprite --config src/sprite/sprite-config.json",
+    "build:all": "pnpm build && pnpm build:types && pnpm generate && pnpm generate:fonts",
+    "prepublishOnly": "pnpm build:all",
+    "preview": "pnpm dlx http-server ./dist/fonts",
+    "release": "pnpm dlx wrangler pages deploy --project-name icongen-icons ./dist/fonts",
+    "examples:nodejs": "cd examples/nodejs-cli && npm install && npm start",
+    "examples:browser": "cd examples/browser-vanilla && pnpm install && pnpm run dev",
+    "examples:build": "cd examples/browser-vanilla && npm install && npm run build",
+    "examples:all": "pnpm examples:nodejs && pnpm examples:browser"
+  },
+  "keywords": [
+    "icons",
+    "svg",
+    "font",
+    "svgtofont",
+    "svgo",
+    "optimization",
+    "webfont",
+    
+    "icon-font",
+    "icongen",
+    "css",
+    "less",
+    "scss",
+    "stylus",
+    "woff",
+    "woff2",
+    "eot",
+    "ttf",
+    "typescript"
+  ],
+  "author": "IconGen Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raminjafary/icongen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raminjafary/icongen/issues"
+  },
+  "homepage": "https://icongen-icons.pages.dev/",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "oslllo-svg-fixer": "5.0.0",
+    "svgo": "4.0.0",
+    "svgtofont": "6.4.1",
+    "svg-sprite": "2.0.4"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/svg-sprite": "0.0.39",
+    "@types/node": "^20.0.0",
+    "vite": "^5.0.0",
+    "tsx": "^4.0.0"
+  }
+}

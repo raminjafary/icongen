@@ -1,0 +1,27 @@
+{
+  "configurations": [
+    {
+      "name": "icons-sprite",
+      "src": "../../examples/svg",
+      "dist": "../../dist/sprite",
+      "spriteName": "icongen-sprite",
+      "hrefBasePath": "/sprite/",
+      "verbose": true,
+      "hashLength": 10,
+      "enableHashRevving": true,
+      "svgoConfig": "default",
+      "generateTypes": true,
+      "generateShowcase": true,
+      "customSvgoConfig": null
+    }
+  ],
+  "defaults": {
+    "verbose": true,
+    "hashLength": 10,
+    "enableHashRevving": true,
+    "svgoConfig": "default",
+    "generateTypes": true,
+    "generateShowcase": true,
+    "hrefBasePath": "/sprite/"
+  }
+}
