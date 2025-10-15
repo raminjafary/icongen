@@ -1,0 +1,11 @@
+{
+  "name": "browser-vanilla-sprite",
+  "src": "./examples/svg",
+  "dist": "./dist/sprite",
+  "spriteName": "browser-sprite",
+  "hrefBasePath": "/dist/sprite/",
+  "verbose": true,
+  "hashLength": 10,
+  "enableHashRevving": true,
+  "svgoConfig": "default"
+}
